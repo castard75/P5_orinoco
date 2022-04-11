@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  background-color: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  font-family: "Raleway", "Sans serif";
+}
+
+.container {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 6fr 0fr;
+  margin: auto;
+  align-items: center;
+  background-color: #f3e9f1 !important;
+  border-radius: 25px;
+}
+.container-commande {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.container-recapitulatif-commande {
+  width: 80vh;
+  border: 1px solid black;
+  width: 50rem;
+  text-align: center;
+}
+
+.gras {
+  font-weight: 900;
+}
+
+.recapitulatif-commande {
+  padding-bottom: 1rem;
+  background-color: #f3e9f1 !important;
+}
+.recapitulatif-commande > p {
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.recapitulatif-commande > p:nth-child(1) {
+  color: red;
+  font-weight: 900;
+  font-size: 1.4rem;
+}
+
+.container-recapitulatif-commande_backgroundColor {
+  background-color: chartreuse;
+}

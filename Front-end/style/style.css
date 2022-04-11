@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  font-family: "Raleway", "Sans serif";
+  background: #eecda3;
+  background: -webkit-linear-gradient(to right, #eecda3, #ef629f);
+  background: linear-gradient(to right, #eecda3, #ef629f);
+}
+
+.container-nav {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.header_position {
+  display: grid;
+  grid-template-columns: 6fr 0fr;
+  margin: auto;
+  align-items: center;
+  background-color: #f3e9f1 !important;
+  border-radius: 15px;
+}
+
+.header_position img {
+  height: 55px;
+  padding-left: 10px;
+}
+
+.navbar {
+  padding: inherit !important;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  margin-bottom: 0%;
+}
+
+nav ul li a {
+  display: flex;
+  text-decoration: none;
+  color: black;
+}
+
+.nav-link {
+  color: black;
+  padding: 0 0.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 1.5em !important;
+}
+
+.panier {
+  display: flex;
+}
+
+.article_ours_numberOne {
+  background-color: #f3e9f1 !important ;
+
+  border-radius: 25px;
+  max-width: 22rem;
+  height: 20rem;
+  margin-top: 20px;
+  padding-top: 4px;
+  padding-left: 4px;
+
+  box-sizing: border-box;
+}
+.ours_article img {
+  width: 100%;
+  height: auto;
+}
+
+.article_ours img {
+  height: 245px;
+  width: 99%;
+  border-radius: 25px 25px 0 0;
+}
+
+.article_ours img:hover {
+  transform: scale(1.02);
+  transition-duration: 0.2s;
+}
+
+.btn {
+  cursor: pointer;
+  padding: 1.5rem 2.5rem;
+
+  background-color: blue;
+  color: #fff;
+  font-size: 2rem;
+}
+
+.article_ours_numberOne_info {
+  display: flex;
+  justify-content: space-between;
+  max-width: 95%;
+}
+
+.article_ours_numberOne_info h2 {
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.article_ours_numberOne_info span {
+  font-weight: 700;
+}
+
+.article_ours {
+  display: flex;
+}
+.font-bold {
+  font-weight: 700;
+}
+
+.container_article {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.size {
+  font-size: 1.2rem;
+}
+
+.btn-block:hover {
+  display: inherit;
+}
+
+.btn-widht {
+  display: block;
+  width: 100%;
+}
+.footer-color {
+  background-color: #f3e9f1 !important ;
+}
+
+.card-header {
+  background-color: white !important ;
+}
+
+#conteneur {
+  overflow: hidden; /* Empêche le dépassement des flottants. */
+}
+
+.taille {
+  height: auto;
+}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/panier.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <title>Orino-Panier</title>
+  </head>
+  <body>
+    <div class="container-nav">
+      <header>
+        <nav class="header_position navbar">
+          <a href="index.html"
+            ><img
+              class="headerImg"
+              src="img/orinoco-logo.png"
+              alt="Logo orinoco"
+            />
+          </a>
+          <ul class="link">
+            <li><a class="nav-link" href="index.html">Acceuil</a></li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+    <div class="px-4 px-lg-0 panier_product-marge">
+      <!-- End -->
+
+      <div class="pb-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
+              <!-- Shopping cart table -->
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="border-0 bg-color">
+                        <div class="p-2 px-3 text-uppercase">Product</div>
+                      </th>
+
+                      <th scope="col" class="border-0 bg-color">
+                        <div class="py-2 text-uppercase">Price</div>
+                      </th>
+                    </tr>
+                    <tbody id="placementArticles"></tbody>
+                    
+                      <th scope="col" class="border-0  bg-color ">
+                        <div class="p-2 px-3 text-uppercase">Prix total</div>
+                      </th>
+
+                      <th scope="col" class="border-0 bg-color"  id="totalFinal">
+                        
+                      </th>
+                    </tr>
+                  </thead>
+                  
+                </table>
+              </div>
+
+              <!-- End -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
+      <div class="grid-panier">
+        <div class="container-montant-total" id="totalFinal"></div>
+        <form
+          class="row g-3 needs-validation"
+          id="myForm"
+          onsubmit="commandOrder(event)"
+        >
+          <div class="col-md-4">
+            <label for="firstName" class="form-label">Prénom</label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              name="firstName"
+              required
+            />
+          </div>
+          <div class="col-md-4">
+            <label for=" lastName" class="form-label">Nom</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              name="lastName"
+              required
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="email" class="form-label">Email</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text" id="inputGroupPrepend">@</span>
+              <input
+                type="text"
+                class="form-control"
+                name="email"
+                id="email"
+                required
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="adress">Addresse</label>
+            <input
+              type="text"
+              class="form-control"
+              id="address"
+              name="address"
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="city" class="form-label">Ville</label>
+            <input
+              type="text"
+              class="form-control"
+              id="city"
+              name="city"
+              required
+            />
+          </div>
+
+          <p id="error"></p>
+          <div class="col-12 btn-padding">
+            <button
+              class="btn btn-primary"
+              type="submit"
+              name="envoyerFormulaire"
+              id="submitForm"
+            >
+              Commander
+            </button>
+          </div>
+          <br />
+        </form>
+      </div>
+      </div>
+    </div>
+    <footer class="footer bg-img footer-color">
+      <div class="col d-flex justify-content-center p-0">
+        <ul class="list-inline text-center my-3">
+          <li class="list-inline-item">
+            <a href="#mentions">Mentions légales</a>
+          </li>
+          <li class="list-inline-item">
+            <a href="mailto:contact@orinoco.fr">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+
+    <script src="./Js/panier.js"></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
