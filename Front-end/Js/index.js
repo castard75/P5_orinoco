@@ -14,6 +14,7 @@ function getArticles() {
       })
       .then(function (value) {
         console.log(value);
+        //stockage de la response dans tableauOurs
         const tableauOurs = value;
         addArticles(tableauOurs);
       });

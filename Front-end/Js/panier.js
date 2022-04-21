@@ -1,12 +1,6 @@
 //Récuperation des produits sélectionnés
 let totalProduits = JSON.parse(localStorage.getItem("productChoice"));
-console.log(totalProduits);
 
-if (localStorage.getItem("productChoice") !== null) {
-  console.log(`Product trouvé`);
-} else {
-  console.log(`Product non trouvé`);
-}
 //Création de la boucle pour afficher les produits
 let totalPrice = 0;
 let panierStorage = "";
@@ -43,7 +37,7 @@ for (let i in totalProduits) {
 
   totalPrice += totalProduits[i].price;
 }
-//Stockage du prix dans le localStorage pour la confirmation de commande
+
 //affichage des produits grace a la boucle
 const affichagePanier = document.getElementById("placementArticles");
 
@@ -65,7 +59,7 @@ function firstNameControl(firstName) {
 
     return true;
   } else {
-    console.log("KO");
+    console.log("MAUVAIS");
 
     return false;
   }
@@ -162,40 +156,63 @@ function commandOrder(e) {
   cityControl();
   //Condition validation formualaire
   if (emailControl(contact.email) == false) {
-    alert("L'email n'est pas valide");
-
+    let emailError = " Email non valide";
+    let emailDisplay = document.querySelector("#email_error");
+    emailDisplay.innerHTML = emailError;
     return false;
+  } else if (emailControl(contact.email) == true) {
+    let emailError = "";
+    let emailDisplay = document.querySelector("#email_error");
+
+    emailDisplay.innerHTML = emailError;
   }
 
   if (firstNameControl(contact.firstName) == false) {
-    alert(
-      "Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 20 caractères,minimum 3 caractères"
-    );
-
+    let messageFirstname =
+      "Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 20 caractères,minimum 3 caractères";
+    const firstnameHandler = document.querySelector("#firstname_error");
+    firstnameHandler.innerHTML = messageFirstname;
     return false;
+  } else if (firstNameControl(contact.firstName) == true) {
+    let messageFirstname = " ";
+    const validationfirst = document.querySelector("#firstname_error");
+    validationfirst.innerHTML = messageFirstname;
   }
 
   if (lastNameControl(contact.lastName) == false) {
-    alert(
-      "Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 20 caractères,minimum 3 caractères"
-    );
-
+    let lastnameError =
+      "Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 20 caractères,minimum 3 caractères";
+    const lastnameHandler = document.querySelector("#lastname_error");
+    lastnameHandler.innerHTML = lastnameError;
     return false;
+  } else if (lastNameControl(contact.lastName) == true) {
+    let messageLastname = " ";
+    const validationLastName = document.querySelector("#lastname_error");
+    validationLastName.innerHTML = messageLastname;
   }
 
   if (adresseControl(contact.address) == false) {
-    alert(
-      "L'adresse doit contenir que des lettres sans ponctuation et des chiffres"
-    );
+    let adressError =
+      "Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 20 caractères,minimum 3 caractères";
+    let adressHandler = document.querySelector("#adress_error");
+    adressHandler.innerHTML = adressError;
     return false;
+  } else if (adresseControl(contact.address) == true) {
+    let adressError = "";
+    let adressHandler = document.querySelector("#adress_error");
+    adressHandler.innerHTML = adressError;
   }
 
   if (cityControl(contact.city) == false) {
-    alert(
-      "Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 20 caractères,minimum 3 caractères"
-    );
-
+    let cityError =
+      "Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 20 caractères,minimum 3 caractères";
+    let cityHandler = document.querySelector("#city_error");
+    cityHandler.innerHTML = cityError;
     return false;
+  } else if (cityControl(contact.city) == true) {
+    let cityError = "";
+    let cityHandler = document.querySelector("#city_error");
+    cityHandler.innerHTML = cityError;
   }
   //Stockage du  prix total de la commande
   localStorage.setItem("Prixtotal", JSON.stringify(totalPrice));
@@ -227,19 +244,20 @@ function commandOrder(e) {
   );
 
   promise.then(async (response) => {
+    //Try catch pour capturer une éventuel éxception
     try {
+      //stockage de response
       const contenu = await response.json();
       console.log(contenu);
 
       if (response.ok) {
-        console.log(`resultat de reponse.ok :  ${response.ok}`);
-
         //recuperation de l'orderId du serveur
-        console.log("la reponse du order Id est");
-        console.log(contenu.orderId);
+
+        console.log("la reponse du order Id est" + contenu.orderId);
 
         //Aller vers la page de confirmation
         window.location = `confirmation.html?orderId=${contenu.orderId}`;
+        removeItem();
       } else {
         `reponse du server :  ${response.status}`;
         alert(`problème avec le serveur : erreur ${response.status} `);
@@ -249,3 +267,7 @@ function commandOrder(e) {
     }
   });
 }
+
+const removeItem = () => {
+  localStorage.removeItem("productChoice");
+};

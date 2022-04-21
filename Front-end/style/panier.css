@@ -112,3 +112,47 @@ nav ul li a {
 .panier_product-marge {
   margin-top: 3rem;
 }
+
+#formulaire{
+width: 50%;
+
+}
+
+#myForm{
+
+  display: grid;
+  grid-row-gap:1rem;
+  
+}
+
+#button-centrage{
+
+  display: flex;
+justify-content: center;
+}
+
+#padding_errors{
+
+  margin-bottom: 25px;
+}
+
+#firstname_error{
+color: red;
+
+}
+
+#lastname_error{
+  color: red;
+  
+  }
+
+.valideFirstName{
+  background-color: greenyellow;
+}
+#email_error {
+  color: red;
+}
+#adress_error{
+  color: red;
+}
+#city_error{color: red;}

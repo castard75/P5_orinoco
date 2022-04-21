@@ -71,16 +71,16 @@
         </div>
       </div>
     </div>
-    <div class="container">
-      <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
+    <div class="container" id="formulaire">
+      <div class="col-lg-12 p-2 bg-white rounded shadow-sm mb-5">
       <div class="grid-panier">
         <div class="container-montant-total" id="totalFinal"></div>
         <form
-          class="row g-3 needs-validation"
-          id="myForm"
+         
+          id="myForm "
           onsubmit="commandOrder(event)"
         >
-          <div class="col-md-4">
+          <div class="mb-3 btn-padding">
             <label for="firstName" class="form-label">Prénom</label>
             <input
               type="text"
@@ -89,8 +89,9 @@
               name="firstName"
               required
             />
+            <span id="firstname_error" ></span>
           </div>
-          <div class="col-md-4">
+          <div class="mb-3 btn-padding">
             <label for=" lastName" class="form-label">Nom</label>
             <input
               type="text"
@@ -99,11 +100,12 @@
               name="lastName"
               required
             />
+            <span id="lastname_error"></span>
           </div>
-          <div class="col-md-4">
+          <div class="mb-3 btn-padding">
             <label for="email" class="form-label">Email</label>
-            <div class="input-group has-validation">
-              <span class="input-group-text" id="inputGroupPrepend">@</span>
+            
+              
               <input
                 type="text"
                 class="form-control"
@@ -111,9 +113,10 @@
                 id="email"
                 required
               />
-            </div>
+              <span id="email_error"></span>
+            
           </div>
-          <div class="col-md-6">
+          <div class="mb-3 btn-padding">
             <label for="adress">Addresse</label>
             <input
               type="text"
@@ -121,8 +124,9 @@
               id="address"
               name="address"
             />
+            <span id="adress_error"></span>
           </div>
-          <div class="col-md-6">
+          <div class="mb-3 btn-padding">
             <label for="city" class="form-label">Ville</label>
             <input
               type="text"
@@ -131,10 +135,11 @@
               name="city"
               required
             />
+            <span id="city_error"></span>
           </div>
 
           <p id="error"></p>
-          <div class="col-12 btn-padding">
+          <div class="mb-3 btn-padding " id="button-centrage">
             <button
               class="btn btn-primary"
               type="submit"

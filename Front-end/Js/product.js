@@ -1,8 +1,9 @@
 let params = new URL(document.location).searchParams;
-let id = params.get("id");
 
 //Récuperation de l'id du produit sélectionné via l'url
+let id = params.get("id");
 
+//Création de l'url pour récupéré les données de l'ours
 let url = "http://localhost:3000/api/teddies/" + id;
 
 //Création de la classe produit pour crée un objet de chaque produit
@@ -76,7 +77,7 @@ function product() {
             >
              Ajouter au panier
             </button>
-            <label for="color-select" class="btn"></label>
+            <label for="color-select" class="btn">Choix couleur :</label>
             <select name="color" id="color-select" class="btn btn-lg  btn-widht add-to-cart btn-outline-primary">
             ${produitOurs.colors}</select>
             
@@ -110,14 +111,15 @@ function product() {
 
 product();
 
-//Function de l'ajout du produit au panier
+//Function pour l'ajout du produit au panier
 function addToCart() {
   if (localStorage.getItem("productChoice") != null) {
     let produitStock = JSON.parse(localStorage.getItem("productChoice")); // recupère le tableau et stockage dans produtiStock
     console.log("productChoice");
     console.log(produitStock);
-    produitStock.push(produitOurs); // ajoute un nouvel objet (ours) au tableau
+    produitStock.push(produitOurs); // ajout du nouveau produit
     localStorage.setItem("productChoice", JSON.stringify(produitStock));
+    alert("votre produit a bien été ajouté au panier");
     // renvoie la nouvel valeur du tableau dans le stockage
   } else {
     // Si il y a pas encore de produit stocké
@@ -126,6 +128,7 @@ function addToCart() {
     produitStock.push(produitOurs); // on stock notre object dans le tableau
 
     localStorage.setItem("productChoice", JSON.stringify(produitStock));
+    alert("votre produit a bien été ajouté au pianier");
 
     console.log(localStorage.getItem("productChoice"));
     // on envoie le tableau dans le stockage grace a la function add to cart
