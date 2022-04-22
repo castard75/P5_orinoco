@@ -22,20 +22,21 @@ for (let i in totalProduits) {
       </div>
     </div>
   </th>
+  <td class="align-middle text_align"><strong> ${
+    totalProduits[i].quantite
+  }</strong></td>
 
-  <td class="align-middle"><strong> ${
+  <td class="align-middle text_align"><strong> ${
     totalProduits[i].price / 100
+  } €</strong></td>
+  <td class="align-middle text_align"><strong> ${
+    (totalProduits[i].price / 100) * totalProduits[i].quantite
   } €</strong></td>
   
   
-  <td class="align-middle">
-    <a href="#" class="text-dark"
-      ><i class="fa fa-trash"></i
-    ></a>
-  </td>
 </tr>`;
 
-  totalPrice += totalProduits[i].price;
+  totalPrice += (totalProduits[i].price / 100) * totalProduits[i].quantite;
 }
 
 //affichage des produits grace a la boucle
@@ -45,7 +46,7 @@ affichagePanier.innerHTML = panierStorage;
 
 //On affiche le prix total de la commande
 let totalDuMontant = `
-<div class="py-2 text-uppercase">${totalPrice / 100}€</div>
+<div class="py-2 text-uppercase price_align">${totalPrice}€</div>
 `;
 const leTotal = document.getElementById("totalFinal");
 leTotal.innerHTML = totalDuMontant;
@@ -219,53 +220,56 @@ function commandOrder(e) {
 
   //Recuperation et stockages des produits sélectionné dans un tableau pour l'envoie a l'api
   let products = [];
-
-  for (let Product of totalProduits) {
-    products.push(Product.id);
-  }
-
-  // objet pour envoyer au serveur
-  const order = {
-    contact,
-    products,
-  };
-  // Envoie de l'objet au serveur
-  const promise = fetch(
-    "http://localhost:3000/api/teddies/order",
-
-    {
-      method: "POST",
-      body: JSON.stringify(order),
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
+  if (totalProduits == null) {
+    alert("Veuillez ajouter un produit au panier");
+  } else {
+    for (let Product of totalProduits) {
+      products.push(Product.id);
     }
-  );
 
-  promise.then(async (response) => {
-    //Try catch pour capturer une éventuel éxception
-    try {
-      //stockage de response
-      const contenu = await response.json();
-      console.log(contenu);
+    // objet pour envoyer au serveur
+    const order = {
+      contact,
+      products,
+    };
+    // Envoie de l'objet au serveur
+    const promise = fetch(
+      "http://localhost:3000/api/teddies/order",
 
-      if (response.ok) {
-        //recuperation de l'orderId du serveur
-
-        console.log("la reponse du order Id est" + contenu.orderId);
-
-        //Aller vers la page de confirmation
-        window.location = `confirmation.html?orderId=${contenu.orderId}`;
-        removeItem();
-      } else {
-        `reponse du server :  ${response.status}`;
-        alert(`problème avec le serveur : erreur ${response.status} `);
+      {
+        method: "POST",
+        body: JSON.stringify(order),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
       }
-    } catch (e) {
-      console.log(e);
-    }
-  });
+    );
+
+    promise.then(async (response) => {
+      //Try catch pour capturer une éventuel éxception
+      try {
+        //stockage de response
+        const contenu = await response.json();
+        console.log(contenu);
+
+        if (response.ok) {
+          //recuperation de l'orderId du serveur
+
+          console.log("la reponse du order Id est" + contenu.orderId);
+
+          //Aller vers la page de confirmation
+          window.location = `confirmation.html?orderId=${contenu.orderId}`;
+          removeItem();
+        } else {
+          `reponse du server :  ${response.status}`;
+          alert(`problème avec le serveur : erreur ${response.status} `);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  }
 }
 
 const removeItem = () => {

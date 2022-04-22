@@ -156,3 +156,12 @@ color: red;
   color: red;
 }
 #city_error{color: red;}
+
+.text_align{
+  text-align: center;
+}
+
+.price_align{
+ 
+    text-align: center;
+}

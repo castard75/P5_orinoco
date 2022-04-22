@@ -14,6 +14,7 @@ class Produit {
     this.price = price;
     this.imageUrl = imageUrl;
     this.colors = colors;
+    this.quantite = 1;
   }
 }
 
@@ -82,15 +83,9 @@ function product() {
             ${produitOurs.colors}</select>
             
           </div>
-        
-        
-       
+
         </div>
-        
-        
-      
-        
-      
+
       `;
           return productPage;
         };
@@ -115,9 +110,20 @@ product();
 function addToCart() {
   if (localStorage.getItem("productChoice") != null) {
     let produitStock = JSON.parse(localStorage.getItem("productChoice")); // recupère le tableau et stockage dans produtiStock
-    console.log("productChoice");
-    console.log(produitStock);
-    produitStock.push(produitOurs); // ajout du nouveau produit
+
+    let productExist = false;
+
+    for (let i in produitStock) {
+      if (produitStock[i].id === produitOurs.id) {
+        produitStock[i].quantite = parseInt(produitStock[i].quantite) + 1;
+        productExist = true;
+      }
+    }
+    if (!productExist) {
+      // ajout du nouveau produit
+      produitStock.push(produitOurs);
+    }
+
     localStorage.setItem("productChoice", JSON.stringify(produitStock));
     alert("votre produit a bien été ajouté au panier");
     // renvoie la nouvel valeur du tableau dans le stockage
