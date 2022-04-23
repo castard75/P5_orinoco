@@ -121,6 +121,7 @@ function addToCart() {
     }
     if (!productExist) {
       // ajout du nouveau produit
+      delete produitOurs.colors;
       produitStock.push(produitOurs);
     }
 
@@ -129,7 +130,7 @@ function addToCart() {
     // renvoie la nouvel valeur du tableau dans le stockage
   } else {
     // Si il y a pas encore de produit stocké
-
+    delete produitOurs.colors;
     let produitStock = [];
     produitStock.push(produitOurs); // on stock notre object dans le tableau
 

@@ -90,6 +90,7 @@ nav ul li a {
   grid-template-areas:
     "header header"
     "container-produits-panier";
+    display: block;
 }
 
 .btn-padding {

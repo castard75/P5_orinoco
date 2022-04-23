@@ -26,7 +26,7 @@ const OrderConfirmed = () => {
 </p>
 <p>
   Le montant de votre commande est :
-  <span class="gras">${prixTotalCommande / 100}</span>€
+  <span class="gras">${prixTotalCommande}</span>€
 </p>
 <p class="gras">A bientôt chez Orinoco !</p>
 </div>

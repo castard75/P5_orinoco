@@ -56,12 +56,16 @@ let myForm = document.getElementById("myForm");
 function firstNameControl(firstName) {
   const lePrenom = document.getElementById("firstName").value;
   if (/^[A-Za-z]{3,20}$/.test(lePrenom)) {
-    console.log("OK");
-
+    let messageFirstname = "";
+    let firstnameHandler = document.querySelector("#firstname_error");
+    firstnameHandler.innerHTML = messageFirstname;
     return true;
   } else {
-    console.log("MAUVAIS");
-
+    let messageFirstname =
+      "Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 20 caractères,minimum 3 caractères";
+    let firstnameHandler = document.querySelector("#firstname_error");
+    firstnameHandler.innerHTML = messageFirstname;
+    console.log("faux");
     return false;
   }
 }
@@ -70,11 +74,16 @@ function lastNameControl(lastName) {
   const leNom = document.getElementById("lastName").value;
   if (/^[A-Za-z]{3,20}$/.test(leNom)) {
     console.log("OK");
-
+    let errorMessage = "";
+    errorSelectId = document.querySelector("#lastname_error");
+    errorSelectId.innerHTML = errorMessage;
     return true;
   } else {
-    console.log("KO");
-
+    let errorMessage =
+      "Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 20 caractères,minimum 3 caractères";
+    errorSelectId = document.querySelector("#lastname_error");
+    errorSelectId.innerHTML = errorMessage;
+    console.log("false");
     return false;
   }
 }
@@ -82,11 +91,16 @@ function lastNameControl(lastName) {
 function adresseControl(adresse) {
   const adressForm = document.getElementById("address").value;
   if (/^[A-Za-z0-9\s]{5,50}$/.test(adressForm)) {
-    console.log("OK");
+    let adressError = "";
+    let adressHandler = document.querySelector("#adress_error");
+    adressHandler.innerHTML = adressError;
 
     return true;
   } else {
-    console.log("KO");
+    let adressError =
+      "Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 20 caractères,minimum 3 caractères";
+    let adressHandler = document.querySelector("#adress_error");
+    adressHandler.innerHTML = adressError;
 
     return false;
   }
@@ -95,11 +109,16 @@ function adresseControl(adresse) {
 function cityControl(city) {
   const laVille = document.getElementById("city").value;
   if (/^[A-Za-z\s]{3,20}$/.test(laVille)) {
-    console.log("OK");
+    let cityError = "";
+    let cityHandler = document.querySelector("#city_error");
+    cityHandler.innerHTML = cityError;
 
     return true;
   } else {
-    console.log("KO");
+    let cityError =
+      "Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 20 caractères,minimum 3 caractères";
+    let cityHandler = document.querySelector("#city_error");
+    cityHandler.innerHTML = cityError;
 
     return false;
   }
@@ -108,11 +127,16 @@ function cityControl(city) {
 function emailControl(email) {
   const emailRegex = document.getElementById("email").value;
   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailRegex)) {
-    console.log("OK");
+    let emailError = "";
+    let emailDisplay = document.querySelector("#email_error");
+
+    emailDisplay.innerHTML = emailError;
 
     return true;
   } else {
-    console.log("KO");
+    let emailError = " Email non valide";
+    let emailDisplay = document.querySelector("#email_error");
+    emailDisplay.innerHTML = emailError;
 
     return false;
   }
@@ -157,69 +181,29 @@ function commandOrder(e) {
   cityControl();
   //Condition validation formualaire
   if (emailControl(contact.email) == false) {
-    let emailError = " Email non valide";
-    let emailDisplay = document.querySelector("#email_error");
-    emailDisplay.innerHTML = emailError;
     return false;
-  } else if (emailControl(contact.email) == true) {
-    let emailError = "";
-    let emailDisplay = document.querySelector("#email_error");
-
-    emailDisplay.innerHTML = emailError;
   }
-
   if (firstNameControl(contact.firstName) == false) {
-    let messageFirstname =
-      "Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 20 caractères,minimum 3 caractères";
-    const firstnameHandler = document.querySelector("#firstname_error");
-    firstnameHandler.innerHTML = messageFirstname;
     return false;
-  } else if (firstNameControl(contact.firstName) == true) {
-    let messageFirstname = " ";
-    const validationfirst = document.querySelector("#firstname_error");
-    validationfirst.innerHTML = messageFirstname;
   }
 
-  if (lastNameControl(contact.lastName) == false) {
-    let lastnameError =
-      "Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 20 caractères,minimum 3 caractères";
-    const lastnameHandler = document.querySelector("#lastname_error");
-    lastnameHandler.innerHTML = lastnameError;
+  if (lastNameControl(contact.lastName) === false) {
     return false;
-  } else if (lastNameControl(contact.lastName) == true) {
-    let messageLastname = " ";
-    const validationLastName = document.querySelector("#lastname_error");
-    validationLastName.innerHTML = messageLastname;
   }
 
   if (adresseControl(contact.address) == false) {
-    let adressError =
-      "Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 20 caractères,minimum 3 caractères";
-    let adressHandler = document.querySelector("#adress_error");
-    adressHandler.innerHTML = adressError;
     return false;
-  } else if (adresseControl(contact.address) == true) {
-    let adressError = "";
-    let adressHandler = document.querySelector("#adress_error");
-    adressHandler.innerHTML = adressError;
   }
 
   if (cityControl(contact.city) == false) {
-    let cityError =
-      "Chiffres et symboles ne sont pas autorisé \n Ne pas dépasser 20 caractères,minimum 3 caractères";
-    let cityHandler = document.querySelector("#city_error");
-    cityHandler.innerHTML = cityError;
     return false;
-  } else if (cityControl(contact.city) == true) {
-    let cityError = "";
-    let cityHandler = document.querySelector("#city_error");
-    cityHandler.innerHTML = cityError;
   }
   //Stockage du  prix total de la commande
   localStorage.setItem("Prixtotal", JSON.stringify(totalPrice));
 
   //Recuperation et stockages des produits sélectionné dans un tableau pour l'envoie a l'api
   let products = [];
+
   if (totalProduits == null) {
     alert("Veuillez ajouter un produit au panier");
   } else {
