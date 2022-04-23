@@ -244,7 +244,7 @@ function commandOrder(e) {
 
           //Aller vers la page de confirmation
           window.location = `confirmation.html?orderId=${contenu.orderId}`;
-          removeItem();
+          localStorage.removeItem("productChoice");
         } else {
           `reponse du server :  ${response.status}`;
           alert(`problème avec le serveur : erreur ${response.status} `);
@@ -255,7 +255,3 @@ function commandOrder(e) {
     });
   }
 }
-
-const removeItem = () => {
-  localStorage.removeItem("productChoice");
-};
