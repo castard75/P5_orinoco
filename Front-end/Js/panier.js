@@ -7,31 +7,33 @@ let panierStorage = "";
 
 for (let i in totalProduits) {
   panierStorage += `
-  <tr>
-  <th scope="row">
-    <div class="p-2">
+  <tr class="flex_wrap size">
+  <th scope="row" class="position">
+    <div class="p-2 wrap_size_margin text_align_block position_block">
       <img
         src="${totalProduits[i].imageUrl}"
         alt=""
         width="170px"
         class="img-fluid rounded shadow-sm"
       />
-      <div class="ml-3 d-inline-block align-middle">
+      <div class="ml-1 justify-content-center-center d-inline-block align-middle text_align_center">
       <h5> ${totalProduits[i].name} </h5>
      
       </div>
     </div>
   </th>
-  <td class="align-middle text_align"><strong> ${
+ 
+
+ <td class="align-middle text_align"><strong> <span>prix :</span> </strong><strong> ${
+   totalProduits[i].price / 100
+ } €</strong></td>
+  <td class="align-middle text_align"><strong> <span>Quantité :</span> </strong><strong> ${
     totalProduits[i].quantite
   }</strong></td>
-
-  <td class="align-middle text_align"><strong> ${
-    totalProduits[i].price / 100
-  } €</strong></td>
-  <td class="align-middle text_align"><strong> ${
+<td class="align-middle text_align"><strong> <span>prix total:</span> </strong><strong> ${
     (totalProduits[i].price / 100) * totalProduits[i].quantite
   } €</strong></td>
+  
   
   
 </tr>`;
@@ -46,7 +48,7 @@ affichagePanier.innerHTML = panierStorage;
 
 //On affiche le prix total de la commande
 let totalDuMontant = `
-<div class="py-2 text-uppercase price_align">${totalPrice}€</div>
+<div class=" p-1 text-uppercase price_align">${totalPrice}€</div>
 `;
 const leTotal = document.getElementById("totalFinal");
 leTotal.innerHTML = totalDuMontant;
